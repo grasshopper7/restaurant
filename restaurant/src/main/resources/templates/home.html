@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Restaurant</title>
+<script th:src="@{/otherfunctions.js}"></script>
+<link rel="stylesheet" th:href="@{/grid.css}" />
+</head>
+<body>
+
+	<div class="container" style="height:100%;">
+		<span class="header">
+			<span style="font-weight: bold; font-size: larger;">Welcome to Italian Cucina</span> 			
+		</span>
+		<span class="kitchen">
+			<span style="float: right; font-weight: bold;">
+				<a th:href="@{/kitchen/}" id="kitchen" target="kitchen_tab">Kitchen</a>
+			</span>
+		</span>
+		<span class="front">
+			<span style="float: right; font-weight: bold;">
+				<a th:href="@{/server/}" id="server" target="server_tab">Servers</a>
+			</span>
+		</span>
+		<span class="tables"> <iframe name="tables" id="tables" th:src="@{/tables/}"
+				style="width: 100%; border: solid;1px; overflow: auto;">
+			</iframe>
+		</span> 
+		<span class="menu"> <iframe name="menuDetails" id="menuDetails" th:src="@{/menu}"
+				style="width: 100%; border: solid;1px; overflow: auto;" onload="loadiframe(this)">
+			</iframe>
+		</span> 
+		<span class="search"> <iframe name="searchOrder" id="searchOrder" th:src="@{/search}"
+				style="width: 100%; height:250px; border: solid;1px; overflow: auto;">
+			</iframe>
+		</span>
+	</div>
+</body>
+</html>

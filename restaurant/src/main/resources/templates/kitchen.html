@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Kitchen</title>
+<link rel="stylesheet" th:href="@{/kitchen.css}" />
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script th:src="@{/kitchenfunctions.js}"></script>
+
+<script>
+window.onload = initialize;
+</script>
+
+</head>
+<body style="margin-left: 4em; margin-top: 1em">
+	<span id='loadmsg' style="display:inline;">Loading kitchen orders...</span>
+	<span style="font-weight: bold; font-size: larger;">KITCHEN</span>
+
+	<div class="row" style="margin-top: 1em; width: 95%">
+		<div class="container">
+			<span style="font-weight: bold; font-size: large;">ORDERED</span>
+			<div id="ordered"></div>
+		</div>
+		<div class="container">
+			<span style="font-weight: bold; font-size: large;">PREPARING</span>
+			<div id="preparing"></div>
+		</div>
+		<div class="container">
+			<span style="font-weight: bold; font-size: large;">READY</span>
+			<div id="ready"></div>
+		</div>
+		<div class="container">
+			<span style="font-weight: bold; font-size: large;">CANCELLED</span>
+			<div id="cancelled"></div>
+		</div>
+	</div>
+
+</body>
+</html>

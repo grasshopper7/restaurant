@@ -1,0 +1,102 @@
+{
+	"singleDefaultDish": {
+		"name": "Espresso",
+		"qty": 5
+	},
+	"individualTables": [
+		{
+			"status": "ORDERED",
+			"table": 1,
+			"dishes": [
+				{
+					"name": "Cappuccino",
+					"qty": 2
+				},
+				{
+					"name": "Macchiato",
+					"qty": 3
+				}
+			]
+		},
+		{
+			"status": "PREPARING",
+			"table": 2,
+			"dishes": [
+				{
+					"name": "Espresso",
+					"qty": 4
+				},
+				{
+					"name": "Macchiato",
+					"qty": 1
+				}
+			]
+		},
+		{
+			"status": "READY",
+			"table": 3,
+			"dishes": [
+				{
+					"name": "Cappuccino",
+					"qty": 5
+				},
+				{
+					"name": "Espresso",
+					"qty": 5
+				}
+			]
+		},
+		{
+			"status": "SERVED",
+			"table": 4,
+			"dishes": [
+				{
+					"name": "Cappuccino",
+					"qty": 4
+				},
+				{
+					"name": "Macchiato",
+					"qty": 3
+				},
+				{
+					"name": "Espresso",
+					"qty": 2
+				}
+			]
+		},
+		{
+			"status": "BILLED",
+			"dishes": [
+				{
+					"name": "Cappuccino",
+					"qty": 5
+				},
+				{
+					"name": "Macchiato",
+					"qty": 5
+				},
+				{
+					"name": "Espresso",
+					"qty": 5
+				}
+			]
+		},
+		{
+			"status": "CANCELLED",
+			"dishes": [
+				{
+					"name": "Cappuccino",
+					"qty": 5
+				},
+				{
+					"name": "Macchiato",
+					"qty": 5
+				},
+				{
+					"name": "Espresso",
+					"qty": 5
+				}
+			]
+		}
+	]
+}

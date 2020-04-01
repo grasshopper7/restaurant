@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Order Search</title>
+<script th:src="@{/otherfunctions.js}"></script>
+</head>
+<body onload="removeLoadMsg();">
+
+	<form th:action="@{/search}" method="post" th:object=${display}>
+
+		<div>
+			<input type="checkbox" onclick="checkAllNone(this);" th:field=*{checkAllState} th:value="${all}" />
+			Status <span th:each="status : ${states}"> <input
+				type="checkbox" th:field=*{checkedState} th:value="${status}" onclick="validateAllNone(this);"/> <label
+				th:text="${status}">PLEASE</label>
+			</span>
+		</div>
+
+		<div>
+			Last <span th:each="time : ${times}"> <input type="radio"
+				th:field=*{selectedTime} th:value="${time}" /> <label
+				th:text="${time}">PLEASE</label>
+			</span> minutes
+		</div>
+
+		<button onclick="return checkStatusSelect();" id="search">Search</button>
+		<span id='loadmsg' style="display:inline;">Loading search results...</span>
+	</form>
+	
+	<div id="noorders" th:if="${#lists.isEmpty(orders)}">No orders available for selected options.</div>
+	
+	<ul id="results">
+		<li th:each="order : ${orders}">			
+			<div th:if="${order.table == null}">
+				<a th:href="@{/order/{id}(id=${order.id})}"
+					th:text="|Order No - ${order.id} - Status - ${order.status}|"
+					th:onclick="'menuWithOutTable(' + ${order.id} + ');return false;'"
+					>Order</a>
+			</div>
+			<div th:if="${order.table != null}">
+				<a th:href="@{/order/{id}(id=${order.id})}"
+					th:text="|Order No - ${order.id} - Status - ${order.status} - Table No - ${order.table.id}|"
+					th:onclick="'menuWithTable(' + ${order.table.id} + ');return false;'"
+					>Order</a>
+			</div>
+		</li>
+	</ul>
+</body>
+</html>

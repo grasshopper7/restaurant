@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Order Details</title>
+<link rel="stylesheet" th:href="@{/grid.css}" />
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script th:src="@{/orderfunctions.js}"></script>
+<script>
+window.onload = initialize;
+</script>
+</head>
+
+<body style="margin:10px;">
+	<span id='loadmsg' style="display:inline;">Loading table and order details...</span>
+
+	<form method="POST">
+	<input type="hidden" id="order-status" name="order-status" th:value="${order.status}"/>
+	<input type="hidden" id="operation" name="operation" th:value="${operation}"/>
+	<input type="hidden" id="orderid" name="orderid" th:value="${order.id}"/>
+	<input type="hidden" id="modTime" name="modTime" th:value="${order.modificationTime}"/>
+	<input type="hidden" id="actionBrowser" name="actionBrowser" value="false"/>
+	
+	<div>
+		<span th:if="${table != ''}" >
+		<span id="message" style="display:none; padding:0 5px 0 5px; border-style:solid; border-width:thin; border-color: red;margin-bottom:5px;">
+			The order for this table has been updated. Press <a id="refresh" href="#" th:onclick="'reloadOrder(' + ${table} +');return false;'">OK</a> to view.
+		</span>
+		</span>
+	</div>
+	<div class="grid" style="margin-bottom:0px; padding-bottom:0px">
+	
+		<div class="menu-group" >
+			<span class="dishtype">APPETIZER</span>
+			<div class="dish" th:each="dish : ${APPETIZER}" th:name="${dish.id}">
+				<span class="dishName" th:id="${dish.id}+_NAME" th:attrappend="style=${__${dish.id}+QTY__}?'color:red'" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span> 
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="-" onclick="updateQty(this, 'minus')" title="Reduce One"/> 
+				<input type="text" th:attrappend="style=${__${dish.id}+QTY__}?'border:2px solid #FF0000'" class="dishqty" th:name="${dish.id}" th:id="${dish.id}" readonly size=1 th:value="${__${dish.id}+QTY__}"/> 
+				<input th:disabled="${allowed}" type="button" th:name="${dish.id}" value="+" onclick="updateQty(this, 'plus')" title="Add One"/>
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="X" onclick="updateQty(this, 'clear')" title="Clear"/>
+			</div>
+		</div>
+	
+		<div class="menu-group">
+			<span class="dishtype">PASTA</span>
+			<div class="dish" th:each="dish : ${PASTA}">
+				<span class="dishName" th:id="${dish.id}+_NAME" th:attrappend="style=${__${dish.id}+QTY__}?'color:red'" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span> 
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="-" onclick="updateQty(this, 'minus')" title="Reduce One"/> 
+				<input type="text" th:attrappend="style=${__${dish.id}+QTY__}?'border:2px solid #FF0000'" class="dishqty" th:name="${dish.id}" th:id="${dish.id}" readonly size=1 th:value="${__${dish.id}+QTY__}"/> 
+				<input th:disabled="${allowed}" type="button" th:name="${dish.id}" value="+" onclick="updateQty(this, 'plus')" title="Add One"/>
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="X" onclick="updateQty(this, 'clear')" title="Clear"/>
+			</div>
+		</div>
+			
+		<div class="menu-group">						
+			<span class="dishtype">PIZZA</span>
+			<div class="dish" th:each="dish : ${PIZZA}">
+				<span class="dishName" th:id="${dish.id}+_NAME" th:attrappend="style=${__${dish.id}+QTY__}?'color:red'" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span> 
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="-" onclick="updateQty(this, 'minus')" title="Reduce One"/> 
+				<input type="text" th:attrappend="style=${__${dish.id}+QTY__}?'border:2px solid #FF0000'" class="dishqty" th:name="${dish.id}" th:id="${dish.id}" readonly size=1 th:value="${__${dish.id}+QTY__}"/> 
+				<input th:disabled="${allowed}" type="button" th:name="${dish.id}" value="+" onclick="updateQty(this, 'plus')" title="Add One"/>
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="X" onclick="updateQty(this, 'clear')" title="Clear"/>
+			</div>
+		</div>
+		
+		<div class="menu-group">	
+			<span class="dishtype">DESSERT</span>
+			<div class="dish" th:each="dish : ${DESSERT}">
+				<span class="dishName" th:id="${dish.id}+_NAME" th:attrappend="style=${__${dish.id}+QTY__}?'color:red'" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span> 
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="-" onclick="updateQty(this, 'minus')" title="Reduce One"/> 
+				<input type="text" th:attrappend="style=${__${dish.id}+QTY__}?'border:2px solid #FF0000'" class="dishqty" th:name="${dish.id}" th:id="${dish.id}" readonly size=1 th:value="${__${dish.id}+QTY__}" /> 
+				<input th:disabled="${allowed}" type="button" th:name="${dish.id}" value="+" onclick="updateQty(this, 'plus')" title="Add One"/>
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="X" onclick="updateQty(this, 'clear')" title="Clear"/>
+			</div>
+		</div>
+		
+		<div class="menu-group">	
+			<span class="dishtype">BEVERAGE</span>
+			<div class="dish" th:each="dish : ${BEVERAGE}">
+				<span class="dishName" th:id="${dish.id}+_NAME" th:attrappend="style=${__${dish.id}+QTY__}?'color:red'" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span>
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="-" onclick="updateQty(this, 'minus')" title="Reduce One"/> 
+				<input type="text" th:attrappend="style=${__${dish.id}+QTY__}?'border:2px solid #FF0000'" class="dishqty" th:name="${dish.id}" th:id="${dish.id}" readonly size=1 th:value="${__${dish.id}+QTY__}" /> 
+				<input th:disabled="${allowed}" type="button" th:name="${dish.id}" value="+" onclick="updateQty(this, 'plus')" title="Add One"/>
+				<input th:disabled="${allowed}" type="button" th:data-qty="${__${dish.id}+QTY__}" th:name="${dish.id}" value="X" onclick="updateQty(this, 'clear')" title="Clear"/>
+			</div>
+		</div>
+	
+		<div class="menu-group">
+			<div style="margin: 0 0.5em 0 0.5em;">
+
+				<span style="float: right;text-align: right;">
+					<span>TABLE : </span><span id="tablenum" th:text="${table}"></span><br>
+					<span th:if="${order.status != null}">
+						<span>ORDER NUMBER : </span><span id="ordernum" th:text="${order.id}"></span><br>
+						<span>STATUS : </span><span id="status" th:text="${order.status}"></span>
+					</span>
+				</span>
+
+				<div th:style="${create}"><button id="createOrder" onclick="return checkQty();">CREATE Order</button></div>
+				<!-- <div th:style="${modify}"><button id="modifyOrder" th:onclick="'return checkStatus(' + ${order.id} +');'">MODIFY Order</button></div> -->
+				<div th:style="${modify}"><button id="modifyOrder" onclick="return checkQty();">MODIFY Order</button></div>
+				<div th:style="${cancel}"><input id="cancelOrder" type="button" th:onclick="'return orderCancel(' + ${order.id} +');'" value="CANCEL Order"/></div>
+			</div>
+		</div> 
+	</div>
+	</form>
+</body>
+</html>

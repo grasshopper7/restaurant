@@ -1,0 +1,159 @@
+{
+	"singleDefaultDish": {
+		"name": "Espresso",
+		"qty": 5
+	},
+	"multipleDefaultDishes": [
+		{
+			"name": "Tiramisu",
+			"qty": 1
+		},
+		{
+			"name": "Chicken Milanese",
+			"qty": 3
+		},
+		{
+			"name": "Sausage Pappardelle",
+			"qty": 5
+		}
+	],
+	"orderedStatusSingleDishTables": [8, 9, 10, 31, 32, 33, 36],
+	"preparingStatusSingleDishTables": [18, 19, 20],
+	"readyStatusSingleDishTables": [29],
+	"servedStatusSingleDishTables": [30],
+	"orderedStatusMutipleDishesTables": [11, 12, 13, 14, 15, 34, 35, 37, 38, 39],
+	"preparingStatusMutipleDishesTables": [21, 22, 23, 24],
+	"readyStatusMutipleDishesTables": [27],
+	"servedStatusMutipleDishesTables": [28],
+	"billedStatusSingleDishCount": 2,
+	"billedStatusMultipleDishesCount": 2,
+	"cancelledStatusSingleDishCount": 2,
+	"cancelledStatusMultipleDishesCount": 2,
+	
+	"individualTables": [
+	{
+  		"status": "ORDERED",
+  		"table": 1,
+ 		"dishes": [
+		  	{
+		  		"name": "Cappuccino",
+		  		"qty": 2
+		  	},
+		  	{
+			  	"name": "Macchiato",
+			  	"qty": 3
+		  	}
+  		]
+	},
+	{
+  		"status": "PREPARING",
+  		"table": 2,
+ 		"dishes": [
+		  	{
+		  		"name": "Espresso",
+		  		"qty": 4
+		  	},
+		  	{
+			  	"name": "Macchiato",
+			  	"qty": 1
+		  	}
+  		]
+	},
+	{
+  		"status": "READY",
+  		"table": 3,
+ 		"dishes": [
+		  	{
+		  		"name": "Cappuccino",
+		  		"qty": 5
+		  	},
+		  	{
+			  	"name": "Espresso",
+			  	"qty": 5
+		  	}
+  		]
+	},
+	{
+  		"status": "SERVED",
+  		"table": 4,
+ 		"dishes": [
+		  	{
+		  		"name": "Cappuccino",
+		  		"qty": 4
+		  	},
+		  	{
+			  	"name": "Macchiato",
+			  	"qty": 3
+		  	},
+		  	{
+			  	"name": "Espresso",
+			  	"qty": 2
+		  	}
+  		]
+	},
+	{
+  		"status": "BILLED",
+ 		"dishes": [
+		  	{
+		  		"name": "Cappuccino",
+		  		"qty": 5
+		  	},
+		  	{
+			  	"name": "Macchiato",
+			  	"qty": 5
+		  	},
+		  	{
+			  	"name": "Espresso",
+			  	"qty": 5
+		  	}
+  		]
+	},
+	{
+  		"status": "CANCELLED",
+ 		"dishes": [
+		  	{
+		  		"name": "Cappuccino",
+		  		"qty": 5
+		  	},
+		  	{
+			  	"name": "Macchiato",
+			  	"qty": 5
+		  	},
+		  	{
+			  	"name": "Espresso",
+			  	"qty": 5
+		  	}
+  		]
+	}
+	],
+	"searchOrders": [
+		{
+			"status": "ORDERED",
+			"table": 41,
+			"delaymins": 20
+		},
+		{
+			"status": "PREPARING",
+			"table": 42,
+			"delaymins": 10
+		},
+		{
+			"status": "READY",
+			"table": 43,
+			"delaymins": 7
+		},
+		{
+			"status": "SERVED",
+			"table": 44,
+			"delaymins": 8
+		},
+		{
+			"status": "BILLED",
+			"delaymins": 55
+		},
+		{
+			"status": "CANCELLED",
+			"delaymins": 25
+		}
+	]
+}

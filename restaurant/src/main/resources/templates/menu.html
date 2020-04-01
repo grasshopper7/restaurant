@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Order Details</title>
+<link rel="stylesheet" th:href="@{/grid.css}" />
+<script>
+function removeLoadMsg(){
+	document.getElementById("loadmsg").style.display = "none";
+}
+</script>
+</head>
+<body onload="removeLoadMsg();">
+	<span id='loadmsg' style="display:inline;">Loading menu details...</span>
+	<div class="grid" style="margin:1em">
+		<div class="menu-group">
+			<div class="dishtype">APPETIZER</div>
+			<div class="dishblank" th:each="dish : ${APPETIZER}" th:name="${dish.id}">
+				<span class="dishName" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span> 
+			</div>
+		</div>
+	
+		<div class="menu-group">
+			<div class="dishtype">PASTA</div>
+			<div class="dishblank" th:each="dish : ${PASTA}">
+				<span class="dishName" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span> 
+			</div>
+		</div>
+			
+		<div class="menu-group">						
+			<div class="dishtype">PIZZA</div>
+			<div class="dishblank" th:each="dish : ${PIZZA}">
+				<span class="dishName" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span> 
+			</div>
+		</div>
+		
+		<div class="menu-group">	
+			<div class="dishtype">DESSERT</div>
+			<div class="dishblank" th:each="dish : ${DESSERT}">
+				<span class="dishName" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span> 
+			</div>
+		</div>
+		
+		<div class="menu-group">	
+			<div class="dishtype">BEVERAGE</div>
+			<div class="dishblank" th:each="dish : ${BEVERAGE}">
+				<span class="dishName" th:text="${dish.name}">NAME</span> 
+				<span class="dishPrice" th:text="${dish.price}">PRICE</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Table Summary</title>
+<link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script th:src="@{/tablefunctions.js}"></script>
+<script>
+window.onload = initialize;
+</script>
+<style>
+.tablestatus {
+  color: black;
+}
+.hightablestatus {
+  color: red;
+}
+</style>
+</head>
+<body >
+	<div>
+		<a th:href="@{/tables/}" id="refresh" target="tables">Refresh Table Status</a>
+	</div>
+	<span id='loadmsg' style="display:inline;">Loading tables...</span>
+	<ul id="tables" style="list-style-type: none;padding-left: 0;">
+		<li th:each="tab : ${tables}">
+			<div>					
+				<span class="tablenum" th:id="tablenum +${tab.id}"><a th:href="@{/tables/{id}(id=${tab.id})}"
+					th:text="Table +${tab.id}" 
+					th:onclick="'opentable(' + ${tab.id} + ');return false;'">
+					Table</a></span>
+					
+				<span class="tablestatus" th:id="tablestatus +${tab.id}" th:if="${tab.order != null}" th:text="${tab.order.status}">Status</span>
+				<span class="tablestatus" th:id="tablestatus +${tab.id}" th:if="${tab.order == null}">VACANT</span>
+			</div>
+		</li>
+	</ul>
+</body>
+</html>
