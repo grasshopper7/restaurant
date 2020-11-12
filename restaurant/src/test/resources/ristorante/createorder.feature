@@ -1,7 +1,6 @@
-@ToRun
 Feature: Create new order scenarios
 
-  Scenario: Create new order
+  Scenario: Create a successful order
     Given User navigates to home page
     When User selects vacant table
     And User creates new order by selecting dishes
@@ -16,8 +15,7 @@ Feature: Create new order scenarios
     And Order status in table list should be Ordered
     And Order should be available in Ordered status in kitchen
 
-  
-  Scenario: Create new order without any dish
+  Scenario: Create order without any dish
     Given User navigates to home page
     When User selects vacant table
     And User creates new order without selecting dish
