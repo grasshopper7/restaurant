@@ -15,11 +15,6 @@ import ristorante.repo.DishRepository;
 import ristorante.repo.OrderRepository;
 import ristorante.repo.TablesRepository;
 
-/*
-CMD EXECUTION FROM JAR
-java -Dtable.count=40 -Dspring.profiles.active=test -jar restaurant.jar
-java -Dspring.profiles.active=notest -Dspring.config.location=D:/ -jar restaurant.jar
-*/
 
 @Configuration
 public class InitialDBdata {
