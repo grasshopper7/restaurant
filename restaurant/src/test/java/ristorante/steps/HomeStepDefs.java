@@ -4,20 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.spring.CucumberContextConfiguration;
 import ristorante.Config;
 import ristorante.pages.HomePageObject;
 
 //@DirtiesContext
-@SpringBootTest (classes = { Config.class })
+@CucumberContextConfiguration
+@SpringBootTest(classes = { Config.class })
 public class HomeStepDefs {
 
 	@Autowired
 	private HomePageObject homePO;
-			
+
 	@Given("User navigates to home page")
-	public void userNavigatesToHomePage() {		
-		
+	public void userNavigatesToHomePage() {
+
 		homePO.get();
 	}
-	
+
 }

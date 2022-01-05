@@ -40,9 +40,9 @@ public class OrderStepDefs {
 		}
 		long orderid = orderPO.saveOrder();
 
-		if(orderid != 0)
+		if (orderid != 0)
 			orderUI.setOrderId(orderid);
-		
+
 		orderUI.setStatus("ORDERED");
 		orderUI.setOrderLines(lines);
 	}
@@ -58,8 +58,8 @@ public class OrderStepDefs {
 
 		Order expectedOrder = orderUI.getInitialOrderData();
 		Order actualOrder = orderPO.getOrderDetails();
-		//System.out.println("expectedOrder - " + expectedOrder);
-		//System.out.println("actualOrder - " + actualOrder);
+		// System.out.println("expectedOrder - " + expectedOrder);
+		// System.out.println("actualOrder - " + actualOrder);
 
 		assertThat(actualOrder).isEqualToIgnoringGivenFields(expectedOrder, "id", "orderLines").extracting("orderLines")
 				.asList().usingElementComparatorIgnoringFields("id")

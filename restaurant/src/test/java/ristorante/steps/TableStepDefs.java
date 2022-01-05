@@ -12,7 +12,7 @@ public class TableStepDefs {
 
 	@Autowired
 	private TableListPageObject tablePO;
-	
+
 	@Autowired
 	private OrderUI orderUI;
 
@@ -20,7 +20,7 @@ public class TableStepDefs {
 	public void userSelectsTable() {
 		String tableNo = tablePO.getAvailableVacantTable();
 		tablePO.selectTableOrder(tableNo);
-		
+
 		orderUI.setTableNo(tableNo.substring(5));
 	}
 

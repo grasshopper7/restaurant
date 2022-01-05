@@ -21,7 +21,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<cucumber.version>4.8.1</cucumber.version>
+		<!-- <cucumber.version>4.8.1</cucumber.version> -->
+		<cucumber.version>6.11.0</cucumber.version>
 	</properties>
 
 	<dependencies>

@@ -11,9 +11,9 @@ Feature: Create new order scenarios
       | Chicken Alla Diavola  |   2 |
     Then Alert is displayed with order creation message
     And Created order details should be displayed
-    And Order should be available in Ordered status in search
-    And Order status in table list should be Ordered
-    And Order should be available in Ordered status in kitchen
+    And Order should be available in ordered status in search
+    And Order status in table list should be ordered
+    And Order should be available in ordered status in kitchen
 
   Scenario: Create order without any dish
     Given User navigates to home page
