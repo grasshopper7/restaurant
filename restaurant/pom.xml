@@ -18,7 +18,8 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>UTF-8
+		</project.reporting.outputEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<cucumber.version>6.11.0</cucumber.version>
@@ -127,6 +128,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>tech.grasshopper</groupId>
+			<artifactId>extentreports-cucumber6-adapter</artifactId>
+			<version>2.10.0</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- Fix for spring boot version 2.4.0 and greater -->
 		<dependency>
 			<groupId>org.junit.vintage</groupId>
@@ -181,25 +189,12 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>tech.grasshopper</groupId>
-				<artifactId>cucumber-pdf-plugin</artifactId>
-				<version>1.5.0</version>
-				<executions>
-					<execution>
-						<id>report</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>pdfreport</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<cucumberJsonReportDirectory>${project.build.directory}/report</cucumberJsonReportDirectory>
-					<cucumberPdfReportDirectory>pdf-report</cucumberPdfReportDirectory>
-					<strictCucumber6Behavior>true</strictCucumber6Behavior>
-				</configuration>
-			</plugin>
+			<!-- <plugin> <groupId>tech.grasshopper</groupId> <artifactId>cucumber-pdf-plugin</artifactId> 
+				<version>1.5.0</version> <executions> <execution> <id>report</id> <phase>post-integration-test</phase> 
+				<goals> <goal>pdfreport</goal> </goals> </execution> </executions> <configuration> 
+				<cucumberJsonReportDirectory>${project.build.directory}/report </cucumberJsonReportDirectory> 
+				<cucumberPdfReportDirectory>pdf-report</cucumberPdfReportDirectory> <strictCucumber6Behavior>true</strictCucumber6Behavior> 
+				</configuration> </plugin> -->
 		</plugins>
 	</build>
 
