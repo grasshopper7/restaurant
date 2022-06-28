@@ -23,7 +23,7 @@ import ristorante.entity.Tables;
 
 @Component
 @Scope(SCOPE_CUCUMBER_GLUE)
-public class OrderPageObject extends BasePageObject<TableListPageObject> {
+public class OrderPageObject extends BasePageObject<OrderPageObject> {
 
 	@FindBy(id = "createOrder")
 	private WebElement createOrder;

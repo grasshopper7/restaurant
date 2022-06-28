@@ -1,5 +1,6 @@
 Feature: Create new order scenarios
 
+	@Success
   Scenario: Create a successful order
     Given User navigates to home page
     When User selects vacant table
@@ -15,6 +16,7 @@ Feature: Create new order scenarios
     And Order status in table list should be ordered
     And Order should be available in ordered status in kitchen
 
+	@Failed
   Scenario: Create order without any dish
     Given User navigates to home page
     When User selects vacant table
